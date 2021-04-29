@@ -23,30 +23,31 @@ function App() {
       img:
         "https://images.unsplash.com/photo-1596380862374-ad7fa9407822?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Z3JhcGVzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60",
     },
+    {
+      name: "berries",
+      price: 200,
+      description: "yummy yummy berries...",
+      img:
+        "https://images.unsplash.com/photo-1516659828014-fb21a5bd8ca3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YmVycmllc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60",
+    },
   ];
+
+  const renderFruit = (fruit) => {
+    return (
+      <li>
+        <Fruit
+          name={fruit.name}
+          price={fruit.price}
+          description={fruit.description}
+          img={fruit.img}
+        />
+      </li>
+    );
+  };
 
   return (
     <div>
-      <Fruit
-        name={fruits[0].name}
-        price={fruits[0].price}
-        description={fruits[0].description}
-        img={fruits[0].img}
-      >
-        I am inside open and close
-      </Fruit>
-      <Fruit
-        name={fruits[1].name}
-        price={fruits[1].price}
-        description={fruits[1].description}
-        img={fruits[1].img}
-      />
-      <Fruit
-        name={fruits[2].name}
-        price={fruits[2].price}
-        description={fruits[2].description}
-        img={fruits[2].img}
-      />
+      <ul className="main">{fruits.map(renderFruit)}</ul>
     </div>
   );
 }
