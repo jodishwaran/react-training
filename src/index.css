@@ -13,8 +13,3 @@ body {
   justify-content: space-between;
   padding: 2rem;
 }
-
-li {
-  list-style: none;
-  flex: 1;
-}

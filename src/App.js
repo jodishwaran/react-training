@@ -32,22 +32,34 @@ function App() {
     },
   ];
 
-  const renderFruit = (fruit) => {
-    return (
-      <li>
-        <Fruit
-          name={fruit.name}
-          price={fruit.price}
-          description={fruit.description}
-          img={fruit.img}
-        />
-      </li>
-    );
-  };
-
   return (
     <div>
-      <ul className="main">{fruits.map(renderFruit)}</ul>
+      <div className="main">
+        <Fruit
+          name={fruits[0].name}
+          price={fruits[0].price}
+          description={fruits[0].description}
+          img={fruits[0].img}
+        ></Fruit>
+        <Fruit
+          name={fruits[1].name}
+          price={fruits[1].price}
+          description={fruits[1].description}
+          img={fruits[1].img}
+        />
+        <Fruit
+          name={fruits[2].name}
+          price={fruits[2].price}
+          description={fruits[2].description}
+          img={fruits[2].img}
+        />
+        <Fruit
+          name={fruits[3].name}
+          price={fruits[3].price}
+          description={fruits[3].description}
+          img={fruits[3].img}
+        />
+      </div>
     </div>
   );
 }
