@@ -1,0 +1,17 @@
+.fruit {
+  border-radius: 12px;
+  box-shadow: 0 7px 8px rgba(0, 0, 0, 0.1);
+  color: white;
+  padding: 2rem 0;
+  margin: 10px 4px;
+  max-width: 45vw;
+  background-color: #003171;
+  display: flex;
+  justify-content: space-around;
+}
+
+.fruit__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
