@@ -3,17 +3,8 @@ import Card from "./Card";
 
 function Fruit(props) {
   const { name, price, description, img } = props;
-
+  console.log("I am Fruit -  rendering");
   return (
-    // <div className="fruit">
-    //   <img src={img} alt="" />
-    //   <div className="fruit__content">
-    //     <div>Name : {name}</div>
-    //     <div>Price : {price}</div>
-    //     <div>Description : {description}</div>
-    //   </div>
-    //   <div>{props.children}</div>
-    // </div>
     <Card className="fruit">
       <Card className="fruit__content">
         <div>

@@ -18,3 +18,24 @@ li {
   list-style: none;
   flex: 1;
 }
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid #003171;
+  border-radius: 12px;
+  color: #003171;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #003171;
+  color: white;
+}
