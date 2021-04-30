@@ -34,8 +34,9 @@ class FruitList extends Component {
           "https://images.unsplash.com/photo-1516659828014-fb21a5bd8ca3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YmVycmllc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60",
       },
     ];
-
-    this.visible = true;
+    this.state = {
+      visible: false,
+    };
   }
 
   renderFruit(fruit) {
@@ -52,51 +53,26 @@ class FruitList extends Component {
   }
 
   onBtnClick(event) {
-    console.log("button got clicked");
-    this.visible = false; // we want a way to force a re render ??
+    this.setState({
+      visible: !this.state.visible,
+    });
   }
 
   render() {
-    console.log("Component rendering  : FruitList");
-    if (!this.visible) {
-      return <p>No fruits available</p>;
-    } else {
-      return (
-        <>
-          <div className="flex-center">
-            <button className="btn" onClick={this.onBtnClick.bind(this)}>
-              Show / Hide Fruits
-            </button>
-          </div>
+    return (
+      <>
+        <div className="flex-center">
+          <button className="btn" onClick={this.onBtnClick.bind(this)}>
+            {this.state.visible ? "Hide" : "Show"} Fruits
+          </button>
+        </div>
+        {this.state.visible ? (
           <ul className="main">{this.fruits.map(this.renderFruit)}</ul>
-        </>
-      );
-    }
-
-    // return this.fruits.length ? (
-    //   <ul className="main">{this.fruits.map(this.renderFruit)}</ul>
-    // ) : (
-    //   <p>No fruits available</p>
-    // );
-
-    // return (
-    //   <>
-    //     {this.fruits.length ? (
-    //       <ul className="main">{this.fruits.map(this.renderFruit)}</ul>
-    //     ) : null}
-    //   </>
-    // );
-    // console.log("I am rendering");
-    // return (
-    //   <>
-    //     <div className="flex-center">
-    //       <button className="btn" onClick={this.onBtnClick}>
-    //         Show / Hide Fruits
-    //       </button>
-    //     </div>
-    //     <ul className="main">{this.fruits.map(this.renderFruit)}</ul>
-    //   </>
-    // );
+        ) : (
+          <p>No fruits available</p>
+        )}
+      </>
+    );
   }
 }
 
