@@ -1,8 +1,23 @@
 import { Component } from "react";
 import Fruit from "./Fruit";
 
+class Test extends Component {
+  render() {
+    return null;
+  }
+
+  componentWillUnmount() {
+    console.log("%c Test : Unmouting", "color: lightPink; font-size: 1rem");
+  }
+}
+
 class FruitList extends Component {
   constructor() {
+    console.log(
+      "%c FruitList : Constructor call (constructor)",
+      "color: lightPink; font-size: 1rem"
+    );
+
     super();
     this.fruits = [
       {
@@ -39,6 +54,13 @@ class FruitList extends Component {
     };
   }
 
+  componentDidMount() {
+    console.log(
+      "%c FruitList : Mounted (componentDidMount)",
+      "color: lightPink; font-size: 1rem"
+    );
+  }
+
   renderFruit(fruit) {
     return (
       <li>
@@ -59,6 +81,11 @@ class FruitList extends Component {
   }
 
   render() {
+    console.log(
+      "%c FruitList : Rendering changes (render)",
+      "color: lightPink; font-size: 1rem"
+    );
+
     return (
       <>
         <div className="flex-center">
@@ -66,12 +93,29 @@ class FruitList extends Component {
             {this.state.visible ? "Hide" : "Show"} Fruits
           </button>
         </div>
+
         {this.state.visible ? (
           <ul className="main">{this.fruits.map(this.renderFruit)}</ul>
         ) : (
           <p>No fruits available</p>
         )}
+
+        {this.state.visible ? <Test></Test> : null}
       </>
+    );
+  }
+
+  componentDidUpdate() {
+    console.log(
+      "%c FruitList : Updated (componentDidUpdate)",
+      "color: lightPink; font-size: 1rem"
+    );
+  }
+
+  componentWillUnmount() {
+    console.log(
+      "%c FruitList : Unmouting (componentWillUnmount)",
+      "color: lightPink; font-size: 1rem"
     );
   }
 }
