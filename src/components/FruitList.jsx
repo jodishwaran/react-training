@@ -28,8 +28,8 @@ class FruitList extends Component {
         <Fruit
           name={fruit.name}
           price={fruit.price}
-          description={fruit.description}
           img={fruit.img}
+          onFruitDelete={this.props.onFruitDelete}
         />
       </li>
     );
@@ -39,6 +39,10 @@ class FruitList extends Component {
     this.setState({
       visible: !this.state.visible,
     });
+  }
+
+  onResetClick() {
+    this.props.onFruitReset();
   }
 
   render() {
@@ -53,12 +57,20 @@ class FruitList extends Component {
           <button className="btn" onClick={this.onBtnClick.bind(this)}>
             {this.state.visible ? "Hide" : "Show"} Fruits
           </button>
+
+          <button className="btn" onClick={this.onResetClick.bind(this)}>
+            Reset Fruits
+          </button>
         </div>
 
-        {this.state.visible ? (
-          <ul className="main">{this.props.fruits.map(this.renderFruit)}</ul>
-        ) : (
+        {!this.state.visible ? (
           <p>No fruits available</p>
+        ) : this.props.fruits.length ? (
+          <ul className="main">
+            {this.props.fruits.map(this.renderFruit.bind(this))}
+          </ul>
+        ) : (
+          <p>No fruits Available, you deleted all!!</p>
         )}
       </>
     );
