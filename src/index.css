@@ -10,32 +10,31 @@ body {
 .main {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   padding: 2rem;
+  justify-content: space-between;
 }
 
 li {
   list-style: none;
-  flex: 1;
+  flex: 1 0 45%;
 }
 
 .flex-center {
   display: flex;
   justify-content: center;
-  margin: 1rem;
 }
 
 .btn {
   padding: 0.5rem 1rem;
-  background: white;
-  border: 1px solid #003171;
-  border-radius: 12px;
+  background: #fff;
   color: #003171;
+  border-radius: 6px;
+  border: 1px solid #003171;
   font-size: 1rem;
   cursor: pointer;
 }
 
 .btn:hover {
   background: #003171;
-  color: white;
+  color: #fff;
 }

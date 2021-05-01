@@ -1,0 +1,29 @@
+.header {
+  border-radius: 0;
+  margin-bottom: 10px;
+  display: flex;
+  padding: 0 2.5rem;
+  align-items: center;
+  color: rgb(21 19 21);
+}
+
+.header__fruit-count {
+  margin-left: auto;
+  margin-right: 1rem;
+  background-color: rgb(21 19 21);
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.header__fruit-count-badge {
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  padding: 0.5rem;
+  margin-left: 4px;
+  background-color: #292926;
+  text-align: center;
+}

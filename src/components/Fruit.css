@@ -2,25 +2,22 @@
   background-color: #003171;
   display: flex;
   justify-content: space-around;
-  flex: 1 1 35%;
+  margin: 4px;
+  padding: 2rem;
 }
 
 .fruit__content {
-  background: white;
-  color: #003171;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  background-color: white;
   flex: 1;
-}
-
-.fruit__content > div {
-  margin: 4px 0;
+  padding: 2rem;
 }
 
 .fruit__img {
-  border-radius: 12px;
-  width: 200px;
-  margin-left: 2rem;
+  border-radius: 10px;
   height: 200px;
+  width: 200px;
+  margin-left: 0.5rem;
 }
