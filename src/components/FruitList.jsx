@@ -30,6 +30,8 @@ class FruitList extends Component {
           price={fruit.price}
           img={fruit.img}
           onFruitDelete={this.props.onFruitDelete}
+          // isLoggedIn={this.props.isLoggedIn}
+          // login={this.props.login}
         />
       </li>
     );

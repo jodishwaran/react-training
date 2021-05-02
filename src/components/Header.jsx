@@ -1,3 +1,4 @@
+import { AuthContext } from "../context";
 import Card from "./Card";
 import "./Header.css";
 
@@ -12,6 +13,18 @@ function Header(props) {
         Available
         <span className="header__fruit-count-badge">{props.count}</span>
       </div>
+
+      <AuthContext.Consumer>
+        {(context) => {
+          return (
+            context.isLoggedIn && (
+              <button className="btn" onClick={context.logout}>
+                Logout
+              </button>
+            )
+          );
+        }}
+      </AuthContext.Consumer>
     </Card>
   );
 }
