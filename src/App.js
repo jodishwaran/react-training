@@ -1,6 +1,7 @@
 import React from "react";
 import FruitList from "./components/FruitList";
 import Header from "./components/Header";
+import Input from "./components/Input";
 
 class App extends React.Component {
   constructor() {
@@ -32,6 +33,7 @@ class App extends React.Component {
             "https://images.unsplash.com/photo-1516659828014-fb21a5bd8ca3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YmVycmllc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60",
         },
       ],
+      searchInput: null,
     };
   }
 
@@ -41,6 +43,10 @@ class App extends React.Component {
     });
 
     this.setState({ fruits: deletedFruits });
+  }
+
+  onFruitSearch(fruitName) {
+    this.setState({ searchInput: fruitName });
   }
 
   onFruitReset() {
@@ -79,11 +85,23 @@ class App extends React.Component {
       "%c App : Rendering changes (render)",
       "color: lightPink; font-size: 1rem"
     );
+
+    const filteredFruits = !this.state.searchInput
+      ? this.state.fruits
+      : this.state.fruits.filter((fruit) => {
+          return (
+            fruit.name.toLowerCase() === this.state.searchInput.toLowerCase()
+          );
+        });
+
     return (
       <div>
         <Header count={this.state.fruits.length} />
+        <div className="flex-center">
+          <Input name="search" onFruitSearch={this.onFruitSearch.bind(this)} />
+        </div>
         <FruitList
-          fruits={this.state.fruits}
+          fruits={filteredFruits}
           onFruitDelete={this.onFruitDelete.bind(this)}
           onFruitReset={this.onFruitReset.bind(this)}
         />
