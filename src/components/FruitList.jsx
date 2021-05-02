@@ -3,11 +3,25 @@ import Fruit from "./Fruit";
 
 class Test extends Component {
   render() {
-    return null;
+    console.log(
+      "%c Test : Rendering to DOM (render)",
+      "color: lightblue; font-size: 1rem;margin-left:40px;"
+    );
+    return <p> Test Component</p>;
+  }
+
+  componentDidMount() {
+    console.log(
+      "%c Test : Mounted (componentDidMount)",
+      "color: lightblue; font-size: 1rem;margin-left:40px;"
+    );
   }
 
   componentWillUnmount() {
-    console.log("%c Test : Unmouting", "color: lightPink; font-size: 1rem");
+    console.log(
+      "%c Test : Unmouting (componentWillMount)",
+      "color: lightblue; font-size: 1rem;margin-left:40px;"
+    );
   }
 }
 
@@ -15,7 +29,7 @@ class FruitList extends Component {
   constructor() {
     console.log(
       "%c FruitList : Constructor call (constructor)",
-      "color: lightPink; font-size: 1rem"
+      "color: lightPink; font-size: 1rem;margin-left:20px;"
     );
 
     super();
@@ -43,22 +57,15 @@ class FruitList extends Component {
       },
       {
         name: "berries",
-        price: 200,
+        price: 400,
         description: "yummy yummy berries...",
         img:
           "https://images.unsplash.com/photo-1516659828014-fb21a5bd8ca3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YmVycmllc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60",
       },
     ];
     this.state = {
-      visible: false,
+      visible: true,
     };
-  }
-
-  componentDidMount() {
-    console.log(
-      "%c FruitList : Mounted (componentDidMount)",
-      "color: lightPink; font-size: 1rem"
-    );
   }
 
   renderFruit(fruit) {
@@ -82,40 +89,46 @@ class FruitList extends Component {
 
   render() {
     console.log(
-      "%c FruitList : Rendering changes (render)",
-      "color: lightPink; font-size: 1rem"
+      "%c FruitList : Rendering to DOM (render)",
+      "color: lightPink; font-size: 1rem;margin-left:20px;"
     );
 
     return (
       <>
+        {this.state.visible ? <Test></Test> : null}
         <div className="flex-center">
           <button className="btn" onClick={this.onBtnClick.bind(this)}>
             {this.state.visible ? "Hide" : "Show"} Fruits
           </button>
         </div>
 
-        {this.state.visible ? (
+        {/* {this.state.visible ? (
           <ul className="main">{this.fruits.map(this.renderFruit)}</ul>
         ) : (
           <p>No fruits available</p>
-        )}
-
-        {this.state.visible ? <Test></Test> : null}
+        )} */}
       </>
+    );
+  }
+
+  componentDidMount() {
+    console.log(
+      "%c FruitList : Mounted (componentDidMount)",
+      "color: lightPink; font-size: 1rem;margin-left:20px;"
     );
   }
 
   componentDidUpdate() {
     console.log(
       "%c FruitList : Updated (componentDidUpdate)",
-      "color: lightPink; font-size: 1rem"
+      "color: lightPink; font-size: 1rem;margin-left:20px;"
     );
   }
 
   componentWillUnmount() {
     console.log(
       "%c FruitList : Unmouting (componentWillUnmount)",
-      "color: lightPink; font-size: 1rem"
+      "color: lightPink; font-size: 1rem;margin-left:20px;"
     );
   }
 }
