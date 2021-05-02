@@ -22,9 +22,9 @@ class FruitList extends Component {
     );
   }
 
-  renderFruit(fruit) {
+  renderFruit(fruit, index) {
     return (
-      <li>
+      <li key={index}>
         <Fruit
           name={fruit.name}
           price={fruit.price}
