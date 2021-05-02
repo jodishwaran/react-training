@@ -118,10 +118,19 @@ class FruitList extends Component {
     );
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     console.log(
       "%c FruitList : Updated (componentDidUpdate)",
       "color: lightPink; font-size: 1rem;margin-left:20px;"
+    );
+
+    console.log(
+      `%c Previous : visible = ${prevState.visible} (componentDidUpdate)`,
+      "color: #d2344c; font-size: 1rem;margin-left:20px;"
+    );
+    console.log(
+      `%c Current :  visible = ${this.state.visible} (componentDidUpdate)`,
+      "color: #d2344c; font-size: 1rem;margin-left:20px;"
     );
   }
 
