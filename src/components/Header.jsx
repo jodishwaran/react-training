@@ -1,4 +1,4 @@
-import { AuthContext } from "../context";
+import { AuthContext } from "../context/authContext";
 import Card from "./Card";
 import "./Header.css";
 

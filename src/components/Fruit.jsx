@@ -1,7 +1,7 @@
 import "./Fruit.css";
 import Card from "./Card";
 import PropTypes from "prop-types";
-import { AuthContext } from "../context";
+import { AuthContext } from "../context/authContext";
 
 function Fruit(props) {
   const { name, price, img, onFruitDelete } = props;

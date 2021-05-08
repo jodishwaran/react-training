@@ -2,7 +2,8 @@ import React from "react";
 import FruitList from "./components/FruitList";
 import Header from "./components/Header";
 import Input from "./components/Input";
-import { AuthContext } from "./context";
+import { AuthContext } from "./context/authContext";
+import { UserProvider } from "./context/userContext";
 
 class App extends React.Component {
   constructor() {
@@ -106,32 +107,34 @@ class App extends React.Component {
 
     return (
       <div>
-        <AuthContext.Provider
-          value={{
-            isLoggedIn: this.state.isLoggedIn,
-            logout: this.logout.bind(this),
-            login: this.login.bind(this),
-          }}
-        >
-          <Header
-            count={this.state.fruits.length}
-            // isLoggedIn={this.state.isLoggedIn}
-            // logout={this.logout.bind(this)}
-          />
-          <div className="flex-center">
-            <Input
-              name="search"
-              onFruitSearch={this.onFruitSearch.bind(this)}
+        <UserProvider>
+          <AuthContext.Provider
+            value={{
+              isLoggedIn: this.state.isLoggedIn,
+              logout: this.logout.bind(this),
+              login: this.login.bind(this),
+            }}
+          >
+            <Header
+              count={this.state.fruits.length}
+              // isLoggedIn={this.state.isLoggedIn}
+              // logout={this.logout.bind(this)}
             />
-          </div>
-          <FruitList
-            fruits={filteredFruits}
-            onFruitDelete={this.onFruitDelete.bind(this)}
-            onFruitReset={this.onFruitReset.bind(this)}
-            // login={this.login.bind(this)}
-            // isLoggedIn={this.state.isLoggedIn}
-          />
-        </AuthContext.Provider>
+            <div className="flex-center">
+              <Input
+                name="search"
+                onFruitSearch={this.onFruitSearch.bind(this)}
+              />
+            </div>
+            <FruitList
+              fruits={filteredFruits}
+              onFruitDelete={this.onFruitDelete.bind(this)}
+              onFruitReset={this.onFruitReset.bind(this)}
+              // login={this.login.bind(this)}
+              // isLoggedIn={this.state.isLoggedIn}
+            />
+          </AuthContext.Provider>
+        </UserProvider>
       </div>
     );
   }

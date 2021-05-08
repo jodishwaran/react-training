@@ -1,5 +1,7 @@
 import { Component } from "react";
+import { AuthContext } from "../context/authContext";
 import Fruit from "./Fruit";
+import { withUser } from "../context/userContext";
 
 class FruitList extends Component {
   constructor() {
@@ -15,7 +17,14 @@ class FruitList extends Component {
     };
   }
 
+  static contextType = AuthContext;
+
   componentDidMount() {
+    console.log(
+      `%c FruitList : Mounted (componentDidMount) : User Logged In Status - ${this.context.isLoggedIn}`,
+      "color: lightPink; font-size: 1rem"
+    );
+
     console.log(
       "%c FruitList : Mounted (componentDidMount)",
       "color: lightPink; font-size: 1rem"
@@ -59,10 +68,12 @@ class FruitList extends Component {
           <button className="btn" onClick={this.onBtnClick.bind(this)}>
             {this.state.visible ? "Hide" : "Show"} Fruits
           </button>
-
           <button className="btn" onClick={this.onResetClick.bind(this)}>
             Reset Fruits
           </button>
+
+          {/* Access user context data as a prop shown below */}
+          <h1>This is {this.props.user}, from User Context</h1>
         </div>
 
         {!this.state.visible ? (
@@ -93,4 +104,4 @@ class FruitList extends Component {
   }
 }
 
-export default FruitList;
+export default withUser(FruitList);
