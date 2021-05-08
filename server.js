@@ -37,7 +37,9 @@ fastify.get("/fruits", async (request, reply) => {
   let filteredFruits = fruits;
   if (request.query.search) {
     filteredFruits = fruits.filter((fruit) => {
-      return fruit.name.toLowerCase() === request.query.search.toLowerCase();
+      return fruit.name
+        .toLowerCase()
+        .startsWith(request.query.search.toLowerCase());
     });
   }
 

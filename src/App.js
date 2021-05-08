@@ -3,21 +3,7 @@ import FruitList from "./components/FruitList";
 import Header from "./components/Header";
 import Input from "./components/Input";
 import { AuthContext } from "./context";
-
-const getFruits = async (search) => {
-  // fetch("http://localhost:8000/fruits")
-  //   .then((res) => res.json())
-  //   .then((res) => {
-  //     this.setState({ fruits: res.fruits });
-  //   });
-
-  let url = "http://localhost:8000/fruits?";
-  if (search) {
-    url = `${url}search=${search}`;
-  }
-  const res = await fetch(url);
-  return await res.json();
-};
+import { getFruits } from "./api";
 
 class App extends React.Component {
   constructor() {
@@ -40,10 +26,7 @@ class App extends React.Component {
       "%c App.js : Updated (componentDidUpdate)",
       "color: lightPink; font-size: 1rem"
     );
-    if (
-      this.state.searchInput &&
-      prevState.searchInput !== this.state.searchInput
-    ) {
+    if (prevState.searchInput !== this.state.searchInput) {
       getFruits(this.state.searchInput).then((res) => {
         this.setState({ fruits: res.fruits });
       });
@@ -81,14 +64,6 @@ class App extends React.Component {
       "%c App : Rendering changes (render)",
       "color: lightPink; font-size: 1rem"
     );
-
-    // const filteredFruits = !this.state.searchInput
-    //   ? this.state.fruits
-    //   : this.state.fruits.filter((fruit) => {
-    //       return (
-    //         fruit.name.toLowerCase() === this.state.searchInput.toLowerCase()
-    //       );
-    //     });
 
     return (
       <div>
