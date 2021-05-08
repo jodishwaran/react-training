@@ -72,7 +72,7 @@ class FruitList extends Component {
             {this.props.fruits.map(this.renderFruit.bind(this))}
           </ul>
         ) : (
-          <p>No fruits Available, you deleted all!!</p>
+          <p>No fruits Available!!</p>
         )}
       </>
     );

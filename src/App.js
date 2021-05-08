@@ -4,39 +4,50 @@ import Header from "./components/Header";
 import Input from "./components/Input";
 import { AuthContext } from "./context";
 
+const getFruits = async (search) => {
+  // fetch("http://localhost:8000/fruits")
+  //   .then((res) => res.json())
+  //   .then((res) => {
+  //     this.setState({ fruits: res.fruits });
+  //   });
+
+  let url = "http://localhost:8000/fruits?";
+  if (search) {
+    url = `${url}search=${search}`;
+  }
+  const res = await fetch(url);
+  return await res.json();
+};
+
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      fruits: [
-        {
-          name: "mano",
-          price: 10,
-          img:
-            "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
-        },
-        {
-          name: "apple",
-          price: 100,
-          img:
-            "https://images.unsplash.com/photo-1582655299221-2b6bff351df0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
-        },
-        {
-          name: "grapes",
-          price: 48,
-          img:
-            "https://images.unsplash.com/photo-1596380862374-ad7fa9407822?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Z3JhcGVzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60",
-        },
-        {
-          name: "berries",
-          price: 200,
-          img:
-            "https://images.unsplash.com/photo-1516659828014-fb21a5bd8ca3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YmVycmllc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60",
-        },
-      ],
+      fruits: [],
       searchInput: null,
       isLoggedIn: false,
     };
+  }
+
+  componentDidMount() {
+    getFruits().then((res) => {
+      this.setState({ fruits: res.fruits });
+    });
+  }
+
+  componentDidUpdate(prevProp, prevState) {
+    console.log(
+      "%c App.js : Updated (componentDidUpdate)",
+      "color: lightPink; font-size: 1rem"
+    );
+    if (
+      this.state.searchInput &&
+      prevState.searchInput !== this.state.searchInput
+    ) {
+      getFruits(this.state.searchInput).then((res) => {
+        this.setState({ fruits: res.fruits });
+      });
+    }
   }
 
   login() {
@@ -60,33 +71,8 @@ class App extends React.Component {
   }
 
   onFruitReset() {
-    this.setState({
-      fruits: [
-        {
-          name: "mano",
-          price: 10,
-          img:
-            "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
-        },
-        {
-          name: "apple",
-          price: 100,
-          img:
-            "https://images.unsplash.com/photo-1582655299221-2b6bff351df0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
-        },
-        {
-          name: "grapes",
-          price: 48,
-          img:
-            "https://images.unsplash.com/photo-1596380862374-ad7fa9407822?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Z3JhcGVzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60",
-        },
-        {
-          name: "berries",
-          price: 200,
-          img:
-            "https://images.unsplash.com/photo-1516659828014-fb21a5bd8ca3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YmVycmllc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60",
-        },
-      ],
+    getFruits().then((res) => {
+      this.setState({ fruits: res.fruits, searchInput: "" });
     });
   }
 
@@ -96,13 +82,13 @@ class App extends React.Component {
       "color: lightPink; font-size: 1rem"
     );
 
-    const filteredFruits = !this.state.searchInput
-      ? this.state.fruits
-      : this.state.fruits.filter((fruit) => {
-          return (
-            fruit.name.toLowerCase() === this.state.searchInput.toLowerCase()
-          );
-        });
+    // const filteredFruits = !this.state.searchInput
+    //   ? this.state.fruits
+    //   : this.state.fruits.filter((fruit) => {
+    //       return (
+    //         fruit.name.toLowerCase() === this.state.searchInput.toLowerCase()
+    //       );
+    //     });
 
     return (
       <div>
@@ -125,7 +111,7 @@ class App extends React.Component {
             />
           </div>
           <FruitList
-            fruits={filteredFruits}
+            fruits={this.state.fruits}
             onFruitDelete={this.onFruitDelete.bind(this)}
             onFruitReset={this.onFruitReset.bind(this)}
             // login={this.login.bind(this)}
